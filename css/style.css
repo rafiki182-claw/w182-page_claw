@@ -45,6 +45,18 @@ body {
     overflow-x: hidden;
 }
 
+@media (prefers-reduced-motion: reduce) {
+    html, body {
+        scroll-behavior: auto !important;
+    }
+
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 a {
     color: var(--secondary);
     text-decoration: none;
@@ -314,7 +326,7 @@ a:hover {
     position: relative;
 }
 
-.section:nth-child(even) {
+.section:nth-of-type(even) {
     background: rgba(255, 255, 255, 0.02);
 }
 

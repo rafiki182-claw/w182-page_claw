@@ -16,12 +16,18 @@ let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
 let typeSpeed = 100;
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function typeWriter() {
     const currentText = typewriterText[textIndex];
     const typewriterElement = document.querySelector('.typewriter');
     
     if (!typewriterElement) return;
+
+    if (prefersReducedMotion) {
+        typewriterElement.textContent = currentText;
+        return;
+    }
 
     if (isDeleting) {
         typewriterElement.textContent = currentText.substring(0, charIndex - 1);
@@ -51,14 +57,23 @@ function initMobileNav() {
     const navLinks = document.querySelector('.nav-links');
 
     if (navToggle && navLinks) {
+        if (!navLinks.id) {
+            navLinks.id = 'nav-links';
+        }
+
+        navToggle.setAttribute('aria-controls', navLinks.id);
+        navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active').toString());
+
         navToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', navLinks.classList.contains('active').toString());
         });
 
         // Close menu when clicking a link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             });
         });
     }
@@ -66,6 +81,8 @@ function initMobileNav() {
 
 // Smooth scroll for anchor links
 function initSmoothScroll() {
+    if (prefersReducedMotion) return;
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
@@ -99,6 +116,8 @@ function initNavbarScroll() {
 
 // Intersection Observer for fade-in animations
 function initScrollAnimations() {
+    if (prefersReducedMotion) return;
+
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -121,8 +140,18 @@ function initScrollAnimations() {
     });
 }
 
+// Dynamic footer year
+function initCurrentYear() {
+    const yearElement = document.querySelector('.footer-copy .current-year');
+
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear().toString();
+    }
+}
+
 // Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    initCurrentYear();
     typeWriter();
     initMobileNav();
     initSmoothScroll();
