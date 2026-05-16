@@ -38,7 +38,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-dark);
     color: var(--text-primary);
     line-height: 1.6;
@@ -706,7 +706,7 @@ a:hover {
 }
 
 .contact-link svg {
-    fill: currentColor;
+    fill: currentcolor;
 }
 
 /* ============================================
@@ -735,7 +735,7 @@ a:hover {
 /* ============================================
    ANIMATIONS
    ============================================ */
-@keyframes fadeInUp {
+@keyframes fade-in-up {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -747,7 +747,7 @@ a:hover {
 }
 
 .section {
-    animation: fadeInUp 0.8s ease-out;
+    animation: fade-in-up 0.8s ease-out;
 }
 
 /* ============================================
