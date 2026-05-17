@@ -349,6 +349,51 @@ a:hover {
 }
 
 /* ============================================
+   THE OFFICE VIDEO
+   ============================================ */
+.office-video {
+    background: radial-gradient(circle at center, rgba(237, 104, 21, 0.08) 0%, transparent 55%);
+}
+
+.video-card {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: calc(var(--radius) - 4px);
+    background: #000;
+}
+
+.video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-link {
+    display: inline-block;
+    margin-top: 18px;
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.video-link:hover {
+    color: var(--primary);
+}
+
+/* ============================================
    EXPERIENCE / TIMELINE
    ============================================ */
 .timeline {
